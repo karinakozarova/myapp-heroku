@@ -14,13 +14,13 @@ class IntervalsController < ApplicationController
         CSV.foreach(file.path) do |a+r| 
         	if i == 30 break end
         	i += 1
-        	current_sum += r[a+r]
+        	current_sum += r[a+r].to_f
         end
         if current_sum>max_sum
     		max_sum = current_sum
    		end
     end 
-    
+
     max_sum = result.ceil
     render plain: '%.2f' % max_sum
   end
