@@ -1,0 +1,10 @@
+<h1>Hello, Rails!</h1>
+<h2> The answer to the URL should be printed here: </h2>
+<% if params.has_key?(:a)&&params.has_key?(:b)%>
+<% a = params['a'] %>
+<% b = params['b'] %>
+<% sum = a.to_i+b.to_i %>
+<%= sum %>
+<%else %>
+	<%=print "Error"%>
+<%end%>
