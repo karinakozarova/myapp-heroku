@@ -5,8 +5,8 @@ protect_from_forgery except: :create
 
   def create
     file = params[:file]
-    lines = CSV.read file.path
-    result = lines.collect(&:first).map(&:to_f).reduce(&:+)
+    result = 0
+    CSV.foreach(file.path){|r| result += r[0].to_f}
     result = result.ceil
     render plain: '%.2f' % result
   end
