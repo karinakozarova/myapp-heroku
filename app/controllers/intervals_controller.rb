@@ -6,7 +6,7 @@ class IntervalsController < ApplicationController
     max_sum = 0
     CSV.foreach(file.path) do |r|
     	current_sum = 0
-    	30.times do |i|{current_sum = (r+i).to_f}
+    	30.times do |i|{current_sum = (r+i)[2].to_f}
     	if current_sum > max_sum
     		max_sum = current_sum
     	end
