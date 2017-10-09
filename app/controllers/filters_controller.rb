@@ -8,7 +8,7 @@ class FiltersController < ApplicationController
     sum = 0
     CSV.foreach(file.path) do |r| 
     	if r[2].to_f % 2 != 0
-    		sum += r[1]
+    		sum += r[1].to_f
     	end
    	end
 
