@@ -4,13 +4,13 @@ class IntervalsController < ApplicationController
   def create
     file = params[:file]
     max_sum = 0
+    i = 0
     current_sum = 0
     count = 0 # num of rows
     CSV.foreach(file.path) do |r| # every row
     	count += 1
     end 
     CSV.foreach(file.path) do |r|
-    	    i = 0
         CSV.foreach(file.path) do |a+r| 
         	if i == 30 break end
         	i += 1
