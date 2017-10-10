@@ -1,28 +1,25 @@
+require 'csv'
 class IntervalsController < ApplicationController
-  protect_from_forgery except: :create
+	protect_from_forgery except: :create
+        def create
+                file = params[:file].path
+				max = 0
+				num = 0
+				num_of_rows = 0
+				CSV.foreach(file) {|row| num_of_rows += 1} 
 
-  def create
-    file = params[:file]
-    max_sum = 0
-    i = 0
-    current_sum = 0
-    count = 0 # num of rows
-    CSV.foreach(file.path) do |r| # every row
-    	count += 1
-    end 
-    CSV.foreach(file.path) do |r|
-        CSV.foreach(file.path) do |a+r| 
-        	if i == 30 break end
-        	i += 1
-        	current_sum += r[a+r].to_f
-        end
-        if current_sum>max_sum
-    		max_sum = current_sum
-   		end
-    end 
+				while (num+30) != num_of_rows
+					result = 0
+		            CSV.foreach(file).with_index(0) do |row,which_row|
+						if num+29 == which_row then break end
+						result += row[0].to_f
+					end
+					if max < result then max = result.to_f end
+					num += 1
+		        end
 
-    max_sum = result.ceil
-    render plain: '%.2f' % max_sum
-  end
+		        max = max.ceil
+		        render plain: "%.2f" % max
+		        end
 
 end
