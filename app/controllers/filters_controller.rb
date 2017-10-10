@@ -12,7 +12,7 @@ class FiltersController < ApplicationController
     	end
    	end
 
-    sum = sum.ceil
-    render plain: '%.2f' % sum
+    sum = sum.ceil(2)
+    render plain: '%f' % sum
   end
 end
