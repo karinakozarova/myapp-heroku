@@ -13,6 +13,6 @@ class LinRegressionsController < ApplicationController
 
     result = SimpleLinearRegression.new(x, y)
 
-    render plain: '%.6f, %.6f' % [result.slope, result.y_intercept]
+    render plain: '%.6f,%.6f' % [result.slope, result.y_intercept]
   end
 end
