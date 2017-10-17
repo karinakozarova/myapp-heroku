@@ -7,7 +7,7 @@ class LinRegressionsController < ApplicationController
   def create
     x , y  = [], []
     CSV.foreach(params[:file].path).with_index do |line, index|
-      x.push(index)
+      x.push(index+1)
       y.push(line[0].to_f)
     end
 
