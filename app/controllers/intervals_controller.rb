@@ -4,7 +4,9 @@ class IntervalsController < ApplicationController
         def create
                 file = params[:file].path
 		arr = Array.new 
-		CSV.foreach(file).each_cons(30){|chunk| arr.push chunk.map(&:first).map(&:to_f).reduce(&:+) end
+		CSV.foreach(file).each_cons(30) do |chunk|
+			arr.push chunk.map(&:first).map(&:to_f).reduce(&:+) 
+		end
 		render plain: "%.2f" % arr.max
 	end
 end
