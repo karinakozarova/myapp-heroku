@@ -3,23 +3,8 @@ class IntervalsController < ApplicationController
 	protect_from_forgery except: :create
         def create
                 file = params[:file].path
-				max = 0
-				num = 0
-				num_of_rows = 0
-				CSV.foreach(file) {|row| num_of_rows += 1} 
-
-				while (num+30) != num_of_rows
-					result = 0
-		            CSV.foreach(file).with_index(0) do |row,which_row|
-						if num+29 == which_row then break end
-						result += row[0].to_f
-					end
-					if max < result then max = result.to_f end
-					num += 1
-		        end
-
-		        max = max.ceil
-		        render plain: "%.2f" % max
-		        end
-
+		arr = Array.new 
+		CSV.foreach(file).each_cons(30){|chunk| arr.push chunk.map(&:first).map(&:to_f).reduce(&:+) end
+		render plain: "%.2f" % arr.max
+	end
 end
